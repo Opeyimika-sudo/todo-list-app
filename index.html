@@ -7,30 +7,41 @@
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
   
   <title>Frontend Mentor | Todo app</title>
-
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet">
+  <link href="css/styles.css" rel="stylesheet">
 </head>
 <body>
-
-  Todo
-
-  <!-- Add dynamic number --> items left
-
-  All
-  Active 
-  Completed
-
-  Clear Completed
-
-  Drag and drop to reorder list
-
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
+  <div class="container container-mobile-light">
+    <header class="header">
+      <h1>TODO</h1>
+      <button class="moon-icon" id="moon-icon"><img src="images/icon-moon.svg" alt="Turn to Dark Mode"></button>
+      <button class="sun-icon" id="sun-icon"><img src="images/icon-sun.svg" alt="Turn to Light Mode"></button>
+    </header>
+    <div>
+      <form class="form-input form-light" id="form">
+        <span class="form-icon"><i class="fa-regular fa-circle"></i></span>
+        <input type="text" id="to-do" class="form-text" name="to-do" placeholder="Create A New Todo...">
+      </form>
+    </div>
   </div>
+  <main class="main-light">
+    <div class="filters-box">
+      <p><span class="items-number"> </span>Items Left</p>
+      <div class="filters">
+        <p >All</p>
+        <p>Active</p>
+        <p>Completed</p>
+      </div>
+      <p>Clear Completed</p>
+    </div>
+  </main>
+  <footer>
+    <div class="attribution">
+      Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+      Coded by <a href="#">Opeyimika</a>.
+    </div>
+  </footer>
+
+<script src="main.js"></script>
 </body>
 </html>

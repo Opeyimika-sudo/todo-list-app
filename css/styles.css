@@ -1,0 +1,229 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap');
+
+:root {
+    --primaryColor: hsl(220, 98%, 61%);
+    --secondaryColor: hsl(0,0%,94%);
+    --mainBG: ;
+    /* Light Mode */
+    --veryLightGray: hsl(0, 0%, 98%);
+    --veryLightGrayishBlue: hsl(236, 33%, 92%);
+    --lightGrayishBlue: hsl(233, 68%, 60%);
+    --darkGrayishBlue: hsl(236, 9%, 61%);
+    --veryDarkGrayishBlue: hsl(235, 19%, 35%);
+
+    /* Dark Mode */
+    --veryDarkBlue: hsl(235, 21%, 11%);
+    --veryDarkDesaturatedBlue: hsl(235, 24%, 19%);
+    --lightGrayishBlue: hsl(234, 39%, 85%);
+    /* hover : hsl(236, 33%, 92%); */
+    --darkGrayishBlue: hsl(234, 11%, 52%);
+    --veryDarkGrayishBlue: hsl(237, 14%, 26%);
+    --checkBG: linear-gradient(
+        45deg,
+        hsl(192deg 100% 67%) 0%,
+        hsl(202deg 99% 67%) 11%,
+        hsl(212deg 96% 66%) 22%,
+        hsl(221deg 95% 66%) 33%,
+        hsl(231deg 94% 66%) 44%,
+        hsl(241deg 93% 66%) 56%,
+        hsl(251deg 91% 66%) 67%,
+        hsl(261deg 90% 65%) 78%,
+        hsl(270deg 88% 65%) 89%,
+        hsl(280deg 87% 65%) 100%
+      );
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    font-size: 18px;
+}
+
+.container {
+    width: 100%;
+    height: 150px;
+}
+
+.container-mobile-light {
+    background-image: url('../images/bg-mobile-light.jpg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.container-mobile-dark {
+    background-image: url('../images/bg-mobile-dark.jpg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.container-desktop-light {
+    width: 100%;
+    height: 150px;
+    background-image: url('../images/bg-desktop-light.jpg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.container-desktop-dark {
+    width: 100%;
+    height: 150px;
+    background-image: url('../images/bg-desktop-dark.jpg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    position: fixed;
+}
+
+header {
+    width: 75%;
+    margin: 0 auto;
+    height: 50px;
+    padding: 30px;
+    position: relative;
+}
+
+/* @media screen only (min-width: 1000px) {
+    width: 50%;
+} */
+
+header h1 {
+    letter-spacing: 4px;
+    display: inline;
+    float: left;
+    position: absolute;
+    left: 0;
+    color: var(--secondaryColor);
+    font-weight: bold;
+}
+
+header .moon-icon {
+    position: absolute;
+    cursor: pointer;
+    right: 0;
+    background: none;
+    border: none;
+    display: inline;
+    float: left;
+    padding-top: 10px;
+}
+
+header .sun-icon {
+    cursor: pointer;
+    display: none;
+    position: absolute;
+    right: 0;
+    float: left;
+    padding-top: 10px;
+    background: none;
+    border: none;
+}
+
+.form-input {
+    margin: 20px auto;
+    text-align: center;
+    position: relative;
+    width: 50%;
+    height: 50px;
+    border-radius: 10px;
+} */
+
+.form-dark {
+    background-color: hsl(234,23%,19%);
+    border: 1px solid hsl(234,23%,19%);
+    color: hsl(236,10%,35%);
+}
+/* Main when clicked => All, Active and Completed => hsl(219,53%,48%) */
+
+/* ::placeholder {
+    color: black;
+} */
+
+::-webkit-input-placeholder{
+    color: black;
+}
+
+.form-icon {
+    position: absolute;
+    top: 14px;
+    left: 15px;
+  }
+  
+.form-text {
+    height: 100%;
+    width: 100%;
+    font-size: 1.2rem;
+    border: none;
+    padding-left: 40px;
+    color: black;
+    border-radius: 10px;
+}
+
+.form-text:hover {
+    border: none;
+}
+
+main {
+    margin: 20px auto;
+    width: 50%;
+    height: 50px;
+    border-radius: 10px;
+}
+
+
+.main-light {
+    background-color: var(--secondaryColor);
+    border: 1px solid var(--secondaryColor);
+    color: hsl(0,0%,0%);
+}
+
+.main-dark {
+    background-color: hsl(234,23%,19%);
+    border: 1px solid hsl(234,23%,19%);
+    color: white;
+}
+
+.filters-box {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+}
+
+.filters {
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.filters > p:hover {
+    font-size: 20px;
+    color: hsl(205,52%,52%);
+    cursor: pointer;
+}
+
+.filters-box > p:nth-of-type(2):hover {
+    color: hsl(205,52%,52%);
+    cursor: pointer;
+    font-size: 20px;
+}
+
+
+/* Footer */
+.attribution { 
+        position: relative;
+        top: 10%;
+        font-size: 16px; 
+        text-align: center;
+ }
+.attribution a { 
+    color: #00AA55; 
+}
