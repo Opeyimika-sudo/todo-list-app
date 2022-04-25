@@ -33,6 +33,9 @@
 
     let bigBoy = [];
     let text;
+    var diva;
+    var divParagraph;
+    var todoItem;
     formInput.addEventListener('keydown', storeFormValue);
 
     function storeFormValue(event) {
@@ -66,22 +69,24 @@
       diva.append(divParagraph);
       divParagraph.textContent = todoItem;
       itemsUpdate.textContent = bigBoy.length + " ";
+      baby(diva, divParagraph, bigBoy, main);
       // location.reload();
     }
 
     function divAbsentia (){
-      var todoItem;
       var storedArray = localStorage.getItem('bigBoyKey');
       bigBoy = JSON.parse(storedArray);
       for (i=0; i<bigBoy.length; i++){
       todoItem = bigBoy[i];
-      var diva = document.createElement('div');
-      var divParagraph = document.createElement('p');
+      diva = document.createElement('div');
+      diva.className = "todoList-item";
+      divParagraph = document.createElement('p');
       divParagraph.classList.add('icon', 'circle', "img", 'todoList-light');
       main.insertBefore(diva, filters);
       diva.append(divParagraph);
       divParagraph.textContent = todoItem;
       itemsUpdate.textContent = bigBoy.length + " ";
+      baby(diva, divParagraph, bigBoy, main, i);
       }
     }
 
@@ -92,5 +97,26 @@
       divAbsentia();
     }
 
+
+    function baby(diva, divParagraph,bigBoy, main, i) {
+      if (divParagraph.classList.contains('img')) {
+      divParagraph.addEventListener('click', () => {
+        let keyDelete = JSON.parse(localStorage.getItem('bigBoyKey')).length;;
+        for (let k = 0; k < keyDelete; k++ ){
+          
+          localStorage.removeItem(JSON.stringify(JSON.parse(localStorage.getItem('bigBoyKey'))[k]));
+        }
+        // } else if(divAbsentia()){
+        //   localStorage.removeItem(bigBoy[i]);
+        // }
+       
+        main.removeChild(diva);
+        itemsUpdate.textContent = bigBoy.length + " ";
+      })
+    }
+    else {
+      return;
+    }
+    }
     
     
