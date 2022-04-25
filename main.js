@@ -8,6 +8,7 @@
   var form = document.getElementById('form');
   var itemsUpdate = document.querySelector('.items-number');
   var filters = document.querySelector('.filters-box');
+  var borderToDo = document.querySelector('.todoList');
   moonIcon.addEventListener('click', darkMode);
   sunIcon.addEventListener('click', lightMode);
 
@@ -53,19 +54,18 @@
       }
     }
 
-    
     function addDiv() {
       var todoItem;
       var storedArray = localStorage.getItem('bigBoyKey');
       bigBoy = JSON.parse(storedArray);
       todoItem = bigBoy[bigBoy.length - 1];
       var diva = document.createElement('div');
-      diva.style.outline = "3px solid orange";
       var divParagraph = document.createElement('p');
-      console.log(divParagraph);
+      divParagraph.classList.add('icon', 'circle', 'todoList-light');
       main.insertBefore(diva, filters);
       diva.append(divParagraph);
       divParagraph.textContent = todoItem;
+      itemsUpdate.textContent = bigBoy.length + " ";
     }
 
     function divAbsentia (){
@@ -75,12 +75,12 @@
       for (i=0; i<bigBoy.length; i++){
         todoItem = bigBoy[i];
         var diva = document.createElement('div');
-        diva.style.outline = "3px solid orange";
         var divParagraph = document.createElement('p');
-        console.log(divParagraph);
+        divParagraph.classList.add('icon', 'circle', 'todoList-light');
         main.insertBefore(diva, filters);
         diva.append(divParagraph);
         divParagraph.textContent = todoItem;
+        itemsUpdate.textContent = bigBoy.length + " ";
       }
     }
 
@@ -90,4 +90,17 @@
     else{
       divAbsentia();
     }
+
+    // main.addEventListener('mouseover', (e) => {
+    //   const target = e.target;
+
+    //   if(target.matches('[todoList-light]')){
+    //     var image = document.createElement('img');
+    //     image.setAttribute("src", "images/icon-cross.svg");
+    //     image.style.cssText = "position: absolute; top: 14px; right: 0;"
+    //     target.append(image);
+    //     console.log(target);
+    //   }
+    // })
+    
     

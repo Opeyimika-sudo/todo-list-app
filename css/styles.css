@@ -190,14 +190,12 @@ main {
 
 .filters-box {
     width: 100%;
-    
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     padding: 0 30px;
     align-content: center;
-    outline: 3px solid orange;
     padding: 15px;
 }
 
@@ -208,11 +206,49 @@ main {
     justify-content: space-around;
 }
 
+/* Icons Styling */
+
+.icon::before {
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+}
+
+.cross::after {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 400;
+    padding-top: 3px;
+    content: "\f00d";
+    right: 30px;
+}
+
+.circle::before{
+    font-family: "Font Awesome 5 Free";
+    font-weight: 400;
+    padding-top: 3px;
+    content: "\f111";
+    margin-right: 8px;
+}
+
+.todoList-light {
+    border-bottom: 1px solid black;
+    padding: 15px;
+}
+
+.todoList-dark{
+    border-bottom: 1px solid white;
+    padding: 15px;
+}
+
 .filters > p:hover {
     font-size: 20px;
     color: hsl(205,52%,52%);
     cursor: pointer;
 }
+
+
 
 .filters-box > p:nth-of-type(2):hover {
     color: hsl(205,52%,52%);
@@ -220,6 +256,7 @@ main {
     font-size: 20px;
 }
 
+/* f111 bullets */
 
 /* Footer */
 .attribution { 
