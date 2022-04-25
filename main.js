@@ -7,6 +7,7 @@
   var formIcon = document.querySelector('form-icon');
   var form = document.getElementById('form');
   var itemsUpdate = document.querySelector('.items-number');
+  var filters = document.querySelector('.filters-box');
   moonIcon.addEventListener('click', darkMode);
   sunIcon.addEventListener('click', lightMode);
 
@@ -30,17 +31,19 @@
   }
 
     let bigBoy = [];
+    let text;
     formInput.addEventListener('keydown', storeFormValue);
 
-    let i;
     function storeFormValue(event) {
       var x = event.key;
       if(x == "Enter" &&  formInput.value.length != 0){
-        for (let i=0; i<form.value.length; i++){
-          let aKeyName = localStorage.key(i);
-        }
-        let key = 'formInput'
-        localStorage.setItem(aKeyName, formInput.value);
+        text = formInput.value;
+        var text1 = text.substr(0, 1).toUpperCase();
+        var text2 = text.slice(1);
+        var text3 = text1.concat(text2);
+        bigBoy.push(text3);
+        let value = JSON.stringify(bigBoy);
+        localStorage.setItem("bigBoyKey", value);
         addDiv();
         event.preventDefault();
         form.reset();
@@ -50,25 +53,41 @@
       }
     }
 
+    
     function addDiv() {
-        var todoItem;
-        for (i = 0; i<localStorage.length; i++){
-            todoItem = localStorage.getItem('formInput');
-            bigBoy.push(todoItem);
-        }
-      console.log(todoItem);
+      var todoItem;
+      var storedArray = localStorage.getItem('bigBoyKey');
+      bigBoy = JSON.parse(storedArray);
+      todoItem = bigBoy[bigBoy.length - 1];
       var diva = document.createElement('div');
       diva.style.outline = "3px solid orange";
       var divParagraph = document.createElement('p');
       console.log(divParagraph);
-      main.append(diva);
+      main.insertBefore(diva, filters);
       diva.append(divParagraph);
       divParagraph.textContent = todoItem;
     }
 
-    if(!localStorage.getItem(`todoItem ${i}`)){
+    function divAbsentia (){
+      var todoItem;
+      var storedArray = localStorage.getItem('bigBoyKey');
+      bigBoy = JSON.parse(storedArray);
+      for (i=0; i<bigBoy.length; i++){
+        todoItem = bigBoy[i];
+        var diva = document.createElement('div');
+        diva.style.outline = "3px solid orange";
+        var divParagraph = document.createElement('p');
+        console.log(divParagraph);
+        main.insertBefore(diva, filters);
+        diva.append(divParagraph);
+        divParagraph.textContent = todoItem;
+      }
+    }
+
+    if(!localStorage.getItem('bigBoyKey')){
       storeFormValue();
     }
     else{
-      addDiv();
+      divAbsentia();
     }
+    
