@@ -61,11 +61,12 @@
       todoItem = bigBoy[bigBoy.length - 1];
       var diva = document.createElement('div');
       var divParagraph = document.createElement('p');
-      divParagraph.classList.add('icon', 'circle', 'todoList-light');
+      divParagraph.classList.add('icon', 'circle', "img", 'todoList-light');
       main.insertBefore(diva, filters);
       diva.append(divParagraph);
       divParagraph.textContent = todoItem;
       itemsUpdate.textContent = bigBoy.length + " ";
+      // location.reload();
     }
 
     function divAbsentia (){
@@ -73,14 +74,14 @@
       var storedArray = localStorage.getItem('bigBoyKey');
       bigBoy = JSON.parse(storedArray);
       for (i=0; i<bigBoy.length; i++){
-        todoItem = bigBoy[i];
-        var diva = document.createElement('div');
-        var divParagraph = document.createElement('p');
-        divParagraph.classList.add('icon', 'circle', 'todoList-light');
-        main.insertBefore(diva, filters);
-        diva.append(divParagraph);
-        divParagraph.textContent = todoItem;
-        itemsUpdate.textContent = bigBoy.length + " ";
+      todoItem = bigBoy[i];
+      var diva = document.createElement('div');
+      var divParagraph = document.createElement('p');
+      divParagraph.classList.add('icon', 'circle', "img", 'todoList-light');
+      main.insertBefore(diva, filters);
+      diva.append(divParagraph);
+      divParagraph.textContent = todoItem;
+      itemsUpdate.textContent = bigBoy.length + " ";
       }
     }
 
@@ -91,16 +92,5 @@
       divAbsentia();
     }
 
-    // main.addEventListener('mouseover', (e) => {
-    //   const target = e.target;
-
-    //   if(target.matches('[todoList-light]')){
-    //     var image = document.createElement('img');
-    //     image.setAttribute("src", "images/icon-cross.svg");
-    //     image.style.cssText = "position: absolute; top: 14px; right: 0;"
-    //     target.append(image);
-    //     console.log(target);
-    //   }
-    // })
     
     
