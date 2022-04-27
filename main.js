@@ -73,24 +73,30 @@
       diva.append(divParagraph);
       divParagraph.textContent = todoItem;
       itemsUpdate.textContent = bigBoy.length + " ";
+      baby(divParagraph);
   }
 
+  
     function divAbsential(){
       var storedArray = localStorage.getItem('bigBoyKey');
       bigBoy = JSON.parse(storedArray);
-      for (i=0; i < bigBoy.length; i++){
-      todoItem = bigBoy[i].value;
-      diva = document.createElement('div');
-      diva.className = "todoList-item";
-      divParagraph = document.createElement('p');
-      divParagraph.classList.add('icon', 'circle', 'img', 'todoList-light');
-      main.insertBefore(diva, filters);
-      diva.append(divParagraph);
-      divParagraph.textContent = todoItem;
-      itemsUpdate.textContent = bigBoy.length + " ";
-      baby(diva, divParagraph,bigBoy, main);
-  }
+      console.log(bigBoy);
+      let i = 0;
+      while (i < bigBoy.length) {
+        todoItem = bigBoy[i].value;
+        diva = document.createElement('div');
+        diva.className = "todoList-item";
+        divParagraph = document.createElement('p');
+        divParagraph.classList.add('icon', 'circle', 'img', 'todoList-light');
+        main.insertBefore(diva, filters);
+        diva.append(divParagraph);
+        divParagraph.textContent = todoItem;
+        itemsUpdate.textContent = bigBoy.length + " ";
+        baby(divParagraph);
+        i++;
+      }
 }
+
 
     if(!localStorage.getItem('bigBoyKey')){
       storeFormValue();
@@ -99,17 +105,22 @@
       divAbsential();
     }
 
-    function baby(diva, divParagraph,bigBoy, main) {
+    function baby(divParagraph) {
       // if (divParagraph.classList.contains('img')) {
       divParagraph.addEventListener('click', () => {
-        for (i =0; i < bigBoy.length; i++){
-          main.removeChild(diva);
-          bigBoy = bigBoy.splice(i, 1);
-          localStorage.setItem('bigBoyKey', JSON.stringify(bigBoy));
-          itemsUpdate.textContent = bigBoy.length + " ";
-          divAbsential();
+        divParagraph.parentElement.remove();
+        var store = localStorage.getItem('bigBoyKey');
+        var hello = JSON.parse(store);
+        console.log(hello)
+        const results = hello.filter(item => item.value !== divParagraph.textContent);
+        console.log(results);
+        localStorage.setItem('bigBoyKey', JSON.stringify(results));
+        
+        if (results.length > 0){
+          itemsUpdate.textContent = results.length + " ";
         }
-        
-        
+        else{
+          itemsUpdate.textContent = "";
+        }
       })
     }
