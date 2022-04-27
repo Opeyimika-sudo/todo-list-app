@@ -45,9 +45,12 @@
         var text1 = text.substr(0, 1).toUpperCase();
         var text2 = text.slice(1);
         var text3 = text1.concat(text2);
-        bigBoy.push(text3);
-        let value = JSON.stringify(bigBoy);
-        localStorage.setItem("bigBoyKey", value);
+        const obj = {
+          "value": text3,
+          "checked": "false",
+        }
+        bigBoy.push(obj);
+        localStorage.setItem("bigBoyKey", JSON.stringify(bigBoy));
         addDiv();
         event.preventDefault();
         form.reset();
@@ -58,65 +61,55 @@
     }
 
     function addDiv() {
-      var todoItem;
       var storedArray = localStorage.getItem('bigBoyKey');
+      console.log(storedArray);
       bigBoy = JSON.parse(storedArray);
-      todoItem = bigBoy[bigBoy.length - 1];
+      console.log(bigBoy);
+      todoItem = bigBoy[bigBoy.length - 1].value;
       var diva = document.createElement('div');
       var divParagraph = document.createElement('p');
-      divParagraph.classList.add('icon', 'circle', "img", 'todoList-light');
+      divParagraph.classList.add('icon', 'circle', 'img','todoList-light');
       main.insertBefore(diva, filters);
       diva.append(divParagraph);
       divParagraph.textContent = todoItem;
       itemsUpdate.textContent = bigBoy.length + " ";
-      baby(diva, divParagraph, bigBoy, main);
-      // location.reload();
-    }
+  }
 
-    function divAbsentia (){
+    function divAbsential(){
       var storedArray = localStorage.getItem('bigBoyKey');
       bigBoy = JSON.parse(storedArray);
-      for (i=0; i<bigBoy.length; i++){
-      todoItem = bigBoy[i];
+      for (i=0; i < bigBoy.length; i++){
+      todoItem = bigBoy[i].value;
       diva = document.createElement('div');
       diva.className = "todoList-item";
       divParagraph = document.createElement('p');
-      divParagraph.classList.add('icon', 'circle', "img", 'todoList-light');
+      divParagraph.classList.add('icon', 'circle', 'img', 'todoList-light');
       main.insertBefore(diva, filters);
       diva.append(divParagraph);
       divParagraph.textContent = todoItem;
       itemsUpdate.textContent = bigBoy.length + " ";
-      baby(diva, divParagraph, bigBoy, main, i);
-      }
-    }
+      baby(diva, divParagraph,bigBoy, main);
+  }
+}
 
     if(!localStorage.getItem('bigBoyKey')){
       storeFormValue();
     }
     else{
-      divAbsentia();
+      divAbsential();
     }
 
-
-    function baby(diva, divParagraph,bigBoy, main, i) {
-      if (divParagraph.classList.contains('img')) {
+    function baby(diva, divParagraph,bigBoy, main) {
+      // if (divParagraph.classList.contains('img')) {
       divParagraph.addEventListener('click', () => {
-        let keyDelete = JSON.parse(localStorage.getItem('bigBoyKey')).length;;
-        for (let k = 0; k < keyDelete; k++ ){
-          
-          localStorage.removeItem(JSON.stringify(JSON.parse(localStorage.getItem('bigBoyKey'))[k]));
+        for (i =0; i < bigBoy.length; i++){
+          main.removeChild(diva);
+          bigBoy = bigBoy.splice(i, 1);
+          localStorage.setItem('bigBoyKey', JSON.stringify(bigBoy));
+          itemsUpdate.textContent = bigBoy.length + " ";
+          divAbsential();
         }
-        // } else if(divAbsentia()){
-        //   localStorage.removeItem(bigBoy[i]);
-        // }
-       
-        main.removeChild(diva);
-        itemsUpdate.textContent = bigBoy.length + " ";
+        
+        
       })
     }
-    else {
-      return;
-    }
-    }
-    
-    
