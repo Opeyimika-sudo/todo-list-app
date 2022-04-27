@@ -62,17 +62,18 @@
 
     function addDiv() {
       var storedArray = localStorage.getItem('bigBoyKey');
-      console.log(storedArray);
       bigBoy = JSON.parse(storedArray);
-      console.log(bigBoy);
       todoItem = bigBoy[bigBoy.length - 1].value;
       var diva = document.createElement('div');
       var divParagraph = document.createElement('p');
-      divParagraph.classList.add('icon', 'circle', 'img','todoList-light');
+      divParagraph.classList.add('icon', 'circle', 
+      // 'img',
+      'todoList-light');
       main.insertBefore(diva, filters);
       diva.append(divParagraph);
       divParagraph.textContent = todoItem;
       itemsUpdate.textContent = bigBoy.length + " ";
+      cancelButton(divParagraph);
       baby(divParagraph);
   }
 
@@ -80,18 +81,20 @@
     function divAbsential(){
       var storedArray = localStorage.getItem('bigBoyKey');
       bigBoy = JSON.parse(storedArray);
-      console.log(bigBoy);
       let i = 0;
       while (i < bigBoy.length) {
         todoItem = bigBoy[i].value;
         diva = document.createElement('div');
         diva.className = "todoList-item";
         divParagraph = document.createElement('p');
-        divParagraph.classList.add('icon', 'circle', 'img', 'todoList-light');
+        divParagraph.classList.add('icon', 'circle', 
+        // 'img', 
+        'todoList-light');
         main.insertBefore(diva, filters);
         diva.append(divParagraph);
         divParagraph.textContent = todoItem;
         itemsUpdate.textContent = bigBoy.length + " ";
+        cancelButton(divParagraph);
         baby(divParagraph);
         i++;
       }
@@ -105,17 +108,28 @@
       divAbsential();
     }
 
+    var img = document.createElement('img');
+    img.src= "images/icon-cross.svg";
+
+
+    function cancelButton (divParagraph) {
+      divParagraph.addEventListener('mouseover', () => {
+        img.style.cssText = "float: right; cursor: pointer;"
+        divParagraph.append(img);
+        })
+
+      divParagraph.addEventListener('mouseout', () => {
+        img.style.cssText = "display: none;"
+      })
+    }
+
     function baby(divParagraph) {
-      // if (divParagraph.classList.contains('img')) {
       divParagraph.addEventListener('click', () => {
         divParagraph.parentElement.remove();
         var store = localStorage.getItem('bigBoyKey');
         var hello = JSON.parse(store);
-        console.log(hello)
-        const results = hello.filter(item => item.value !== divParagraph.textContent);
-        console.log(results);
+        const results = hello.filter(item => item.value != divParagraph.textContent);
         localStorage.setItem('bigBoyKey', JSON.stringify(results));
-        
         if (results.length > 0){
           itemsUpdate.textContent = results.length + " ";
         }
@@ -124,3 +138,4 @@
         }
       })
     }
+   

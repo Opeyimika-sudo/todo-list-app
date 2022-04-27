@@ -199,12 +199,6 @@ main {
     padding: 15px;
 }
 
-.img:hover::after {
-    content: url(../images/icon-cross.svg);
-    float: right;
-    cursor: pointer;
-}
-
 svg path{
     fill: #3A539B;
 }
