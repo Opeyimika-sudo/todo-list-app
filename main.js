@@ -66,9 +66,7 @@
       todoItem = bigBoy[bigBoy.length - 1].value;
       var diva = document.createElement('div');
       var divParagraph = document.createElement('p');
-      divParagraph.classList.add('icon', 'circle', 
-      // 'img',
-      'todoList-light');
+      divParagraph.classList.add('icon', 'circle', 'todoList-light');
       main.insertBefore(diva, filters);
       diva.append(divParagraph);
       divParagraph.textContent = todoItem;
@@ -87,9 +85,7 @@
         diva = document.createElement('div');
         diva.className = "todoList-item";
         divParagraph = document.createElement('p');
-        divParagraph.classList.add('icon', 'circle', 
-        // 'img', 
-        'todoList-light');
+        divParagraph.classList.add('icon', 'circle', 'todoList-light');
         main.insertBefore(diva, filters);
         diva.append(divParagraph);
         divParagraph.textContent = todoItem;
@@ -119,7 +115,7 @@
         })
 
       divParagraph.addEventListener('mouseout', () => {
-        img.style.cssText = "display: none;"
+        img.style.cssText = "display: none;" 
       })
     }
 
