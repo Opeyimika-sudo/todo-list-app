@@ -1,4 +1,4 @@
-  var container = document.querySelector('div');
+var container = document.querySelector('div');
   var moonIcon = document.getElementById('moon-icon');
   var sunIcon = document.getElementById('sun-icon');
   var body = document.querySelector('body'); 
@@ -12,7 +12,6 @@
   moonIcon.addEventListener('click', darkMode);
   sunIcon.addEventListener('click', lightMode);
 
-
   function darkMode() {
     moonIcon.style.cssText = "display: none;"
     sunIcon.style.cssText = "display: inline;"
@@ -21,7 +20,6 @@
     main.style.cssText = "background-color: hsl(234,23%,19%);border: 1px solid hsl(234,23%,19%);color: white;"
     container.classList.replace('container-mobile-light', 'container-mobile-dark');
   }
-
   function lightMode() {
     moonIcon.style.cssText = "display: inline;"
     sunIcon.style.cssText = "display: none;"
@@ -30,11 +28,8 @@
     formInput.style.cssText = "background-color: var(--secondaryColor);border: 1px solid var(--secondaryColor);"
     container.classList.replace('container-mobile-dark', 'container-mobile-light');
   }
-
-    let bigBoy = [];
+    var bigBoy = new Array();
     let text;
-    var diva;
-    var divParagraph;
     var todoItem;
     formInput.addEventListener('keydown', storeFormValue);
 
@@ -62,19 +57,22 @@
 
     function addDiv() {
       var storedArray = localStorage.getItem('bigBoyKey');
+      console.log(storedArray);
       bigBoy = JSON.parse(storedArray);
       todoItem = bigBoy[bigBoy.length - 1].value;
       var diva = document.createElement('div');
       var divParagraph = document.createElement('p');
-      divParagraph.classList.add('icon', 'circle', 'todoList-light');
+      var img = document.createElement('img');
+      img.src= "images/icon-cross.svg";
+      img.style.cssText = "display: none";
+      divParagraph.classList.add('icon', 'circle','todoList-light');
       main.insertBefore(diva, filters);
       diva.append(divParagraph);
       divParagraph.textContent = todoItem;
       itemsUpdate.textContent = bigBoy.length + " ";
-      cancelButton(divParagraph);
-      baby(divParagraph);
+      cancelButton(divParagraph, img);
+      baby(divParagraph, img);
   }
-
   
     function divAbsential(){
       var storedArray = localStorage.getItem('bigBoyKey');
@@ -86,52 +84,53 @@
         diva.className = "todoList-item";
         divParagraph = document.createElement('p');
         divParagraph.classList.add('icon', 'circle', 'todoList-light');
+        var img = document.createElement('img');
+        img.src= "images/icon-cross.svg";
+        img.style.cssText = "display: none";
         main.insertBefore(diva, filters);
         diva.append(divParagraph);
         divParagraph.textContent = todoItem;
         itemsUpdate.textContent = bigBoy.length + " ";
-        cancelButton(divParagraph);
-        baby(divParagraph);
+        cancelButton(divParagraph, img);
+        baby(divParagraph, img);
         i++;
       }
 }
-
-
     if(!localStorage.getItem('bigBoyKey')){
       storeFormValue();
     }
     else{
       divAbsential();
     }
+   
 
-    var img = document.createElement('img');
-    img.src= "images/icon-cross.svg";
-
-
-    function cancelButton (divParagraph) {
+    function cancelButton (divParagraph, img) {
       divParagraph.addEventListener('mouseover', () => {
         img.style.cssText = "float: right; cursor: pointer;"
         divParagraph.append(img);
         })
 
       divParagraph.addEventListener('mouseout', () => {
-        img.style.cssText = "display: none;" 
+        img.style.cssText = "display: none;"
       })
     }
 
-    function baby(divParagraph) {
-      divParagraph.addEventListener('click', () => {
+    function baby(divParagraph, img) {
+      img.addEventListener('click', () => {
         divParagraph.parentElement.remove();
+        console.log(divParagraph);
         var store = localStorage.getItem('bigBoyKey');
         var hello = JSON.parse(store);
+        console.log(hello);
         const results = hello.filter(item => item.value != divParagraph.textContent);
         localStorage.setItem('bigBoyKey', JSON.stringify(results));
+        console.log(JSON.parse(localStorage.getItem('bigBoyKey')));
         if (results.length > 0){
           itemsUpdate.textContent = results.length + " ";
         }
         else{
           itemsUpdate.textContent = "";
+          location.reload();
         }
       })
     }
-   
