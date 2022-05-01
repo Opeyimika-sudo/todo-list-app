@@ -235,7 +235,19 @@ svg path{
     padding-top: 3px;
     content: "\f111";
     margin-right: 8px;
+    background-color: var(--beforeBG, 'white');
 }
+/*  
+.arrow::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 400;
+    padding-top: 3px;
+    content: "\f111";
+    margin-right: 8px;
+    background-color: var(--checkBG);
+}
+
+*/
 
 .todoList-light {
     border-bottom: 1px solid black;
