@@ -72,7 +72,6 @@ var container = document.querySelector('div');
       itemsUpdate.textContent = bigBoy.length + " ";
       cancelButton(divParagraph, img);
       baby(divParagraph, img);
-      // fillCircle();
   }
   
     function divAbsential(){
@@ -94,7 +93,6 @@ var container = document.querySelector('div');
         itemsUpdate.textContent = bigBoy.length + " ";
         cancelButton(divParagraph, img);
         baby(divParagraph, img);
-        // fillCircle(divParagraph);
         i++;
       }
 }
@@ -136,22 +134,3 @@ var container = document.querySelector('div');
         }
       })
     }
-    /*
-    function fillCircle() {
-      var circle = document.querySelector('.circle');
-      circle.addEventListener('click', () => {
-        circle.style.cssText ="backgroundColor: linear-gradient(45deg, hsl(192deg 100% 67%) 0%, hsl(202deg 99% 67%) 11%, hsl(212deg 96% 66%) 22%, hsl(221deg 95% 66%) 33%,   hsl(231deg 94% 66%) 44%,hsl(241deg 93% 66%) 56%,hsl(251deg 91% 66%) 67%,hsl(261deg 90% 65%) 78%,hsl(270deg 88% 65%) 89%,hsl(280deg 87% 65%) 100%)" 
-      })
-    }
-    */
-    var check = document.createElement('img');
-    check.src="images/icon-check.svg";
-
-    var circle = document.querySelector('.circle');
-    let css_of_after = window.getComputedStyle(circle, '::before');
-    circle.addEventListener('click', () => {
-      check.style.cssText = "color: orange;"
-      divParagraph.append(check);
-      circle.style.setProperty('--beforeBG', 'rgb(87,221,255)');
-    })
-    
