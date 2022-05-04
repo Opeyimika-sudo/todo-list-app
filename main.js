@@ -81,7 +81,7 @@
       itemsUpdate.textContent = bigBoy.length + " ";
       cancelButton(divParagraph, img);
       baby(divParagraph, img);
-      checked(circle, divParagraph);
+      checked(circle, divParagraph, img);
   }
   
     function divAbsential(){
@@ -112,7 +112,7 @@
         itemsUpdate.textContent = bigBoy.length + " ";
         cancelButton(divParagraph, img);
         baby(divParagraph, img);
-        checked(circle, divParagraph, i);
+        checked(circle, divParagraph, img);
         i++;
       }
 }
@@ -155,25 +155,33 @@
       })
     }
 
-    function checked(circle, divParagraph, i) {
+    function checked(circle, divParagraph, img) {
       circle.addEventListener('click', () => {
         circle.classList.toggle('check');
         circle.classList.toggle('icon');
         divParagraph.classList.toggle('paragraph-text'); 
         
+        var selectedFew = JSON.parse(localStorage.getItem('bigBoyKey'));
+        for (let i=0; i <selectedFew.length; i++){
+          if(circle.classList.contains('check')){
+              if(divParagraph.textContent === selectedFew[i].value){
+                selectedFew[i].checked = "true";
+                localStorage.setItem('bigBoyKey', JSON.stringify(selectedFew));
+                console.log(JSON.parse(localStorage.getItem('bigBoyKey')));
+                baby(divParagraph, img);
+              }
+            } 
+          else{
+            if(divParagraph.textContent === selectedFew[i].value){
+              selectedFew[i].checked = "false";
+            localStorage.setItem('bigBoyKey', JSON.stringify(selectedFew));
+            console.log(JSON.parse(localStorage.getItem('bigBoyKey')));
+            }
+          }
+     
+        }   
       })
-      if(circle.classList.contains('check')){
-        var kiddy = localStorage.getItem('bigBoyKey');
-        var skibby = JSON.parse(kiddy);
-        for(let entry of Object.entries(skibby)){
-          for(let )
-        }
-
-        localStorage.setItem('bigBoyKey', JSON.stringify(results));
-        console.log(JSON.parse(localStorage.getItem('bigBoyKey')));
-      }
     }
-    
 
     //All, Active, Completed, Clear Completed States
     var all = document.getElementById('all');
