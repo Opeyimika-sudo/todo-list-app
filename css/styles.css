@@ -18,25 +18,21 @@
     /* hover : hsl(236, 33%, 92%); */
     --darkGrayishBlue: hsl(234, 11%, 52%);
     --veryDarkGrayishBlue: hsl(237, 14%, 26%);
-    --checkBG: linear-gradient(
-        45deg,
-        hsl(192deg 100% 67%) 0%,
-        hsl(202deg 99% 67%) 11%,
-        hsl(212deg 96% 66%) 22%,
-        hsl(221deg 95% 66%) 33%,
-        hsl(231deg 94% 66%) 44%,
-        hsl(241deg 93% 66%) 56%,
-        hsl(251deg 91% 66%) 67%,
-        hsl(261deg 90% 65%) 78%,
-        hsl(270deg 88% 65%) 89%,
-        hsl(280deg 87% 65%) 100%
-      );
+    --checkBG: linear-gradient(45deg, #0089AB, #7616A6);
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 200,
+  'GRAD' 0,
+  'opsz' 48
 }
 
 body {
@@ -212,14 +208,23 @@ svg path{
 }
 
 /* Icons Styling */
-
-.icon::before {
+/* 
+.icon::before{
     display: inline-block;
     font-style: normal;
     font-variant: normal;
     text-rendering: auto;
     -webkit-font-smoothing: antialiased;
 }
+
+.circle::before{
+    font-family: "Font Awesome 5 Free";
+    font-weight: 400;
+    padding-top: 3px;
+    content: "\f111";
+    margin-right: 8px;
+    position: relative;
+} */
 
 .cross::after {
     font-family: "Font Awesome 5 Free";
@@ -229,22 +234,38 @@ svg path{
     right: 30px;
 }
 
-.circle::before{
-    font-family: "Font Awesome 5 Free";
-    font-weight: 400;
-    padding-top: 3px;
-    content: "\f111";
-    margin-right: 8px;
+.check::before{
+    position: absolute;
+    content: url(../images/icon-check.svg);
+    bottom: 6px;
+    left: 6px;
 }
+
+.paragraph-text {
+    text-decoration: line-through;
+}
+
+.icon {
+    background-image: var(--checkBG);
+    border: 3px solid var(--checkBG);
+    object-fit: fill;
+    /* font-size: 22px; */
+    border-radius: 50%;
+    height: auto;
+}
+
 
 .todoList-light {
     border-bottom: 1px solid black;
     padding: 15px;
+    /* color: black; */
+    
 }
 
 .todoList-dark{
     border-bottom: 1px solid white;
     padding: 15px;
+    /* color: white; */
 }
 
 .filters > p:hover {

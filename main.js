@@ -1,4 +1,4 @@
-var container = document.querySelector('div');
+  var container = document.querySelector('div');
   var moonIcon = document.getElementById('moon-icon');
   var sunIcon = document.getElementById('sun-icon');
   var body = document.querySelector('body'); 
@@ -25,7 +25,7 @@ var container = document.querySelector('div');
     sunIcon.style.cssText = "display: none;"
     body.style.cssText = "background-color: white; color: black;"
     main.style.cssText = "background-color: var(--secondaryColor); color: black; border: 1px solid var(--secondaryColor);";
-    formInput.style.cssText = "background-color: var(--secondaryColor);border: 1px solid var(--secondaryColor);"
+    formInput.style.cssText = "background-color: var(--secondaryColor); border: 1px solid var(--secondaryColor);"
     container.classList.replace('container-mobile-dark', 'container-mobile-light');
   }
     var bigBoy = new Array();
@@ -65,13 +65,23 @@ var container = document.querySelector('div');
       var img = document.createElement('img');
       img.src= "images/icon-cross.svg";
       img.style.cssText = "display: none";
-      divParagraph.classList.add('icon', 'circle','todoList-light');
+      diva.classList.add(
+        // 'icon', 'circle',
+        'todoList-light');
+        divParagraph.style.cssText = "position: relative;left: 30px;"
+      var circle = document.createElement('span');
+      circle.setAttribute("class", "material-symbols-outlined");
+      circle.textContent = "circle"
+      circle.style.cssText = "position: absolute; top: 13px; left: 10px;";
       main.insertBefore(diva, filters);
       diva.append(divParagraph);
+      diva.style.cssText = "position: relative;"
+      diva.insertBefore(circle, divParagraph);
       divParagraph.textContent = todoItem;
       itemsUpdate.textContent = bigBoy.length + " ";
       cancelButton(divParagraph, img);
       baby(divParagraph, img);
+      checked(circle, divParagraph);
   }
   
     function divAbsential(){
@@ -83,16 +93,26 @@ var container = document.querySelector('div');
         diva = document.createElement('div');
         diva.className = "todoList-item";
         divParagraph = document.createElement('p');
-        divParagraph.classList.add('icon', 'circle', 'todoList-light');
+        diva.classList.add(
+          // 'icon', 'circle', 
+          'todoList-light');
+        divParagraph.style.cssText = "position: relative;left: 30px;"
         var img = document.createElement('img');
         img.src= "images/icon-cross.svg";
         img.style.cssText = "display: none";
+        var circle = document.createElement('span');
+        circle.setAttribute("class", "material-symbols-outlined");
+        circle.textContent = "circle"
+        circle.style.cssText = "position: absolute; cursor: pointer; overflow: hidden; border-radius: 50%; height: 21px;width: 23px; text-align: center; top: 14px; left: 10px;";
         main.insertBefore(diva, filters);
         diva.append(divParagraph);
+        diva.insertBefore(circle, divParagraph);
+        diva.style.cssText = "position: relative;"
         divParagraph.textContent = todoItem;
         itemsUpdate.textContent = bigBoy.length + " ";
         cancelButton(divParagraph, img);
         baby(divParagraph, img);
+        checked(circle, divParagraph, i);
         i++;
       }
 }
@@ -106,7 +126,7 @@ var container = document.querySelector('div');
 
     function cancelButton (divParagraph, img) {
       divParagraph.addEventListener('mouseover', () => {
-        img.style.cssText = "float: right; cursor: pointer;"
+        img.style.cssText = "float: right; cursor: pointer; position: relative; right: 30px;"
         divParagraph.append(img);
         })
 
@@ -134,3 +154,36 @@ var container = document.querySelector('div');
         }
       })
     }
+
+    function checked(circle, divParagraph, i) {
+      circle.addEventListener('click', () => {
+        circle.classList.toggle('check');
+        circle.classList.toggle('icon');
+        divParagraph.classList.toggle('paragraph-text'); 
+        
+      })
+      if(circle.classList.contains('check')){
+        var kiddy = localStorage.getItem('bigBoyKey');
+        var skibby = JSON.parse(kiddy);
+        for(let entry of Object.entries(skibby)){
+          for(let )
+        }
+
+        localStorage.setItem('bigBoyKey', JSON.stringify(results));
+        console.log(JSON.parse(localStorage.getItem('bigBoyKey')));
+      }
+    }
+    
+
+    //All, Active, Completed, Clear Completed States
+    var all = document.getElementById('all');
+    var active = document.getElementById('active');
+    var completed = document.getElementById('completed');
+    var clear = document.getElementById('clear');
+
+    function activeState() {
+      active.addEventListener('click', () => {
+        
+      })
+    }
+    
