@@ -1,3 +1,4 @@
+  // Declaration of the variables from the HTML page
   var container = document.querySelector('div');
   var moonIcon = document.getElementById('moon-icon');
   var sunIcon = document.getElementById('sun-icon');
@@ -12,6 +13,7 @@
   moonIcon.addEventListener('click', darkMode);
   sunIcon.addEventListener('click', lightMode);
 
+   // Function to turn the page to Dark Mode from Light Mode
   function darkMode() {
     moonIcon.style.cssText = "display: none;"
     sunIcon.style.cssText = "display: inline;"
@@ -20,6 +22,8 @@
     main.style.cssText = "background-color: hsl(234,23%,19%);border: 1px solid hsl(234,23%,19%);color: white;"
     container.classList.replace('container-mobile-light', 'container-mobile-dark');
   }
+
+  // Function to turn the page to Light Mode from Dark Mode
   function lightMode() {
     moonIcon.style.cssText = "display: inline;"
     sunIcon.style.cssText = "display: none;"
@@ -32,7 +36,7 @@
     let text;
     var todoItem;
     formInput.addEventListener('keydown', storeFormValue);
-
+// Function to listen for the "Enter" button click and push the value to local Storage 
     function storeFormValue(event) {
       var x = event.key;
       if(x == "Enter" &&  formInput.value.length != 0){
@@ -54,7 +58,7 @@
         alert("No waste my time");
       }
     }
-
+// Function to add the new value from input field into the page
     function addDiv() {
       var storedArray = localStorage.getItem('bigBoyKey');
       console.log(storedArray);
@@ -83,7 +87,7 @@
       baby(divParagraph, img);
       checked(circle, divParagraph, img);
   }
-  
+  // Function to add all the items from localStorage to the page
     function divAbsential(){
       var storedArray = localStorage.getItem('bigBoyKey');
       bigBoy = JSON.parse(storedArray);
@@ -123,7 +127,7 @@
       divAbsential();
     }
    
-
+  // Code for cancel Button to appear on hover on the to-do list item
     function cancelButton (divParagraph, img) {
       divParagraph.addEventListener('mouseover', () => {
         img.style.cssText = "float: right; cursor: pointer; position: relative; right: 30px;"
@@ -135,6 +139,7 @@
       })
     }
 
+    // Code to listen for a click on the cancel button and remove the to-do list item from the page and localStorage
     function baby(divParagraph, img) {
       img.addEventListener('click', () => {
         divParagraph.parentElement.remove();
@@ -155,6 +160,7 @@
       })
     }
 
+    // Code for checking/ticking a todo list item and the ensuing changes
     function checked(circle, divParagraph, img) {
       circle.addEventListener('click', () => {
         circle.classList.toggle('check');
