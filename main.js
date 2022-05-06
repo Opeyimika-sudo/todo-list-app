@@ -16,23 +16,25 @@
   var clear = document.getElementById('clear');
 
     // addEventListener to icons
-  moonIcon.addEventListener('click', () => {
-        moonIcon.style.cssText = "display: none;"
-        sunIcon.style.cssText = "display: inline;"
-        body.style.cssText = "background-color: black; color: white;"
-        formInput.style.cssText = "background-color: hsl(234,23%,19%); border: 1px solid hsl(234,23%,19%); color: white;"
-        main.style.cssText = "background-color: hsl(234,23%,19%);border: 1px solid hsl(234,23%,19%);color: white;"
-        container.classList.replace('container-mobile-light', 'container-mobile-dark');
-  });
+  moonIcon.addEventListener('click', darkMode);
+  function darkMode(){
+    moonIcon.style.cssText = "display: none;"
+    sunIcon.style.cssText = "display: inline;"
+    body.style.cssText = "background-color: black; color: white;"
+    formInput.style.cssText = "background-color: hsl(234,23%,19%); border: 1px solid hsl(234,23%,19%); color: white;"
+    main.style.cssText = "background-color: hsl(234,23%,19%);border: 1px solid hsl(234,23%,19%);color: white;"
+    container.classList.replace('container-mobile-light', 'container-mobile-dark');
+}
   
-  sunIcon.addEventListener('click', () => {
-      moonIcon.style.cssText = "display: inline;"
-      sunIcon.style.cssText = "display: none;"
-      body.style.cssText = "background-color: white; color: black;"
-      main.style.cssText = "background-color: var(--secondaryColor); color: black; border: 1px solid var(--secondaryColor);";
-      formInput.style.cssText = "background-color: var(--secondaryColor); border: 1px solid var(--secondaryColor);"
-      container.classList.replace('container-mobile-dark', 'container-mobile-light');
-  })
+  sunIcon.addEventListener('click', lightMode);
+  function lightMode() {
+    moonIcon.style.cssText = "display: inline;"
+    sunIcon.style.cssText = "display: none;"
+    body.style.cssText = "background-color: white; color: black;"
+    main.style.cssText = "background-color: var(--secondaryColor); color: black; border: 1px solid var(--secondaryColor);";
+    formInput.style.cssText = "background-color: var(--secondaryColor); border: 1px solid var(--secondaryColor);"
+    container.classList.replace('container-mobile-dark', 'container-mobile-light');
+}
 
 
     var bigBoy = new Array();
@@ -224,10 +226,6 @@
           function setColor(){
             all.style.cssText = "color: #3c19ff";
           }
-          function stopSetTime() {
-            all.style.cssText = "color: black;"
-          }
-        setTimeout(stopSetTime, 5000);
         for(i=0; i<resulting.length; i++){
           if(resulting[i].value === divParagraph.textContent){
             diva.style.cssText = "display: block; position: relative;";
@@ -255,10 +253,6 @@
           function setColor(){
             active.style.cssText = "color: #3c19ff";
           }
-          function stopSetTime() {
-            active.style.cssText = "color: black;"
-          }
-        setTimeout(stopSetTime, 5000);
         for(i=0; i<resulting.length; i++){
           if(resulting[i].value === divParagraph.textContent){
             diva.style.cssText = "display: none";
@@ -284,10 +278,6 @@
           function setColor(){
             completed.style.cssText = "color: #3c19ff";
           }
-          function stopSetTime() {
-            completed.style.cssText = "color: black;"
-          }
-        setTimeout(stopSetTime, 5000);
         for(i=0; i<result.length; i++){
           if(result[i].value === divParagraph.textContent){
             diva.style.cssText = "display: none;"
