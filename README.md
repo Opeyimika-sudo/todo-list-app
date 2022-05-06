@@ -27,8 +27,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [](https://github.com/Opeyimika-sudo/todo-list-app)
+- Live Site URL: [](https://opeyimika-todo.netlify.app/)
 
 ## My process
 
@@ -46,20 +46,20 @@ Users should be able to:
 
 ### What I learned
 
-I learnt so much about how to think up logic. In previous Javascript projects, I approached writing code on a test-run basis - Let's see if it'd work type-of-vibe. This project was different, I wrote down specifically on paper what the next steps were after successfully adding a functionality or simply getting an element or clas from the index.html page. After that, I wrote the test cases that the algorithm I wrote needed to pass to ensure that my algorithm didn't only pass the logic needed to build this functionality but also as I continue to implement more functionalities. 
+I learnt so much about how to think up logic. In previous Javascript projects, I approached writing code on a test-run basis - Let's see if it'd work type-of-vibe. This project was different, I wrote down specifically on paper what the next steps were after successfully adding a functionality or simply getting an element or class from the index.html page. After that, I wrote the test cases that the algorithm I wrote needed to pass to ensure that my algorithm didn't only pass the logic needed to build this functionality but also for additional functionalities. 
 
-I also understood localStorage well from building this project. I have never heard of localStorage or sessionStorage. All I knew of were cookies but this project helped me really understand localStorage, how to set items in it, how to get the items in it using the key and then updating it as you remove a todo item, for example.
+I also understood localStorage well from building this project. I had never heard of localStorage or sessionStorage. All I knew of were cookies but this project helped me really understand localStorage, how to set items in it, how to get the items in it using the key and then updating it as you remove a todo item, for example.
 
-I also understood callback functions. The simplest callback function I made was one that turned the filter(active, completed) I clicked blue after 1 second but turned it back to black after 10 seconds with another setTimeout() function.
+I also understood callback functions. The simplest callback function I made was one that turned the filter(active, completed) I clicked blue after 1 second but turned it back to black after 10 seconds with the setTimeout() function.
 
 ### Continued development
 
-I plan to learn JSON with the next project I build. I saw a little bit of what it could do with JSON.stringify and JSON.parse but I'd see what more can be built using JSON.
+I plan to learn JSON with the next project I build. I saw a little bit of what it could do with JSON.stringify and JSON.parse but I'd like to see what more can be built using JSON.
 
 ### Useful resources
 
 - [Freecodecamp article on localStorage](https://www.freecodecamp.org/news/how-to-store-data-in-web-browser-storage-localstorage-and-session-storage-explained/) - This helped me understand localStorage.
-- [Ania Kubow's video on Callback Function](https://www.youtube.com/watch?v=cNjIUSDnb9k&t=532s) - This is an amazing article which helped me finally understand Callback Functions. I'd recommend it to anyone still learning this concept.
+- [Ania Kubow's video on Callback Function](https://www.youtube.com/watch?v=cNjIUSDnb9k&t=532s) - This is an amazing video which helped me finally understand Callback Functions. I'd recommend it to anyone still learning this concept.
 
 
 ## Author
