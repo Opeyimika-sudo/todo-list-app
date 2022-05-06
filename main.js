@@ -10,6 +10,10 @@
   var itemsUpdate = document.querySelector('.items-number');
   var filters = document.querySelector('.filters-box');
   var borderToDo = document.querySelector('.todoList');
+  var all = document.getElementById('all');
+  var active = document.getElementById('active');
+  var completed = document.getElementById('completed');
+  var clear = document.getElementById('clear');
   moonIcon.addEventListener('click', darkMode);
   sunIcon.addEventListener('click', lightMode);
 
@@ -86,13 +90,19 @@
       cancelButton(divParagraph, img);
       baby(divParagraph, img);
       checked(circle, divParagraph, img);
+      activeState(active, divParagraph);
+      completedState(completed, divParagraph);
+      clearCompleted(divParagraph, clear);
+      //activeState(divParagraph,active, diva);;
   }
   // Function to add all the items from localStorage to the page
     function divAbsential(){
       var storedArray = localStorage.getItem('bigBoyKey');
       bigBoy = JSON.parse(storedArray);
+      
       let i = 0;
       while (i < bigBoy.length) {
+        localStorage.setItem('bigBoyKey', JSON.stringify(bigBoy));
         todoItem = bigBoy[i].value;
         diva = document.createElement('div');
         diva.className = "todoList-item";
@@ -117,6 +127,15 @@
         cancelButton(divParagraph, img);
         baby(divParagraph, img);
         checked(circle, divParagraph, img);
+        activeState(active, divParagraph);
+        completedState(completed, divParagraph);
+        clearCompleted(divParagraph, clear)
+        if(completedState(completed, divParagraph)){
+          return; 
+        }else{
+          bigBoy[i].checked = "false";
+        }
+        //activeState(divParagraph,active, diva);
         i++;
       }
 }
@@ -160,6 +179,12 @@
       })
     }
 
+    for(i=0; i<JSON.parse(localStorage.getItem('bigBoyKey')); i++){
+      if(JSON.parse(localStorage.getItem('bigBoyKey'))[i].checked == "true"){
+        checked(circle, divParagraph, img);
+      }
+    }
+    
     // Code for checking/ticking a todo list item and the ensuing changes
     function checked(circle, divParagraph, img) {
       circle.addEventListener('click', () => {
@@ -190,14 +215,54 @@
     }
 
     //All, Active, Completed, Clear Completed States
-    var all = document.getElementById('all');
-    var active = document.getElementById('active');
-    var completed = document.getElementById('completed');
-    var clear = document.getElementById('clear');
+    
 
-    function activeState() {
+   function activeState(active, divParagraph) {
       active.addEventListener('click', () => {
-        
+        var localStorageContent = JSON.parse(localStorage.getItem('bigBoyKey'))
+        var resulting = localStorageContent.filter(content => content.checked === "true");
+        for(i=0; i<resulting.length; i++){
+          if(resulting[i].value === divParagraph.textContent){
+            divParagraph.parentElement.remove();
+            itemListNumber = `${localStorageContent.length}` - `${resulting.length}`;
+            itemsUpdate.textContent = itemListNumber + " ";
+          }
+        }
+        completedState(completed, divParagraph);
+        console.log(resulting);
+      })
+    }
+
+    function completedState(completed, divParagraph){
+      completed.addEventListener('click', () => {
+        var localStorageContent = JSON.parse(localStorage.getItem('bigBoyKey'))
+        var result = localStorageContent.filter(content => content.checked !== "false");
+        for(i=0; i<result.length; i++){
+          if(result[i].value === divParagraph.textContent){
+            divParagraph.parentElement.remove();
+            itemListNumber = `${localStorageContent.length}` - `${result.length}`;
+            itemsUpdate.textContent = itemListNumber + " ";
+          }
+        }
+        activeState(active, divParagraph);
+        console.log(result); 
+      })
+    }
+
+    
+    function clearCompleted(divParagraph, clear) {
+      clear.addEventListener('click', () => {
+        var arrayToClear = JSON.parse(localStorage.getItem('bigBoyKey'));
+        for (i=0; i< arrayToClear.length; i++){
+          if(arrayToClear[i].value === divParagraph.textContent && arrayToClear[i].checked === "true"){
+            divParagraph.parentElement.remove();
+          }
+        }
+        var activeArray = arrayToClear.filter(item => item.checked === "false");
+        localStorage.setItem('bigBoyKey', JSON.stringify(activeArray));
       })
     }
     
+    // function setActiveArray(activeArray){
+      
+    // }
