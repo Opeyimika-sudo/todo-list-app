@@ -22,13 +22,13 @@ Users should be able to:
 
 ### Screenshot
 
-![Snapshot of the To-do List](./images/to-do-list-screenshot.jpg);
+![Snapshot of the To-do List](./images/to-do-list-screenshot.jpg)
 
 
 ### Links
 
-- Solution URL: [](https://github.com/Opeyimika-sudo/todo-list-app)
-- Live Site URL: [](https://opeyimika-todo.netlify.app/)
+- Solution URL: [https://github.com/Opeyimika-sudo/todo-list-app](https://github.com/Opeyimika-sudo/todo-list-app)
+- Live Site URL: [https://opeyimika-todo.netlify.app/](https://opeyimika-todo.netlify.app/)
 
 ## My process
 
