@@ -40,6 +40,7 @@
     let text;
     var todoItem;
     formInput.addEventListener('keydown', storeFormValue);
+    
 // Function to listen for the "Enter" button click and push the value to local Storage 
     function storeFormValue(event) {
       var x = event.key;
@@ -65,7 +66,6 @@
 // Function to add the new value from input field into the page
     function addDiv() {
       var storedArray = localStorage.getItem('bigBoyKey');
-      console.log(storedArray);
       bigBoy = JSON.parse(storedArray);
       todoItem = bigBoy[bigBoy.length - 1].value;
       var diva = document.createElement('div');
@@ -73,9 +73,7 @@
       var img = document.createElement('img');
       img.src= "images/icon-cross.svg";
       img.style.cssText = "display: none";
-      diva.classList.add(
-        // 'icon', 'circle',
-        'todoList-light');
+      diva.classList.add('todoList-light');
         divParagraph.style.cssText = "position: relative;left: 30px;"
       var circle = document.createElement('span');
       circle.setAttribute("class", "material-symbols-outlined");
@@ -90,11 +88,12 @@
       cancelButton(divParagraph, img);
       baby(divParagraph, img);
       checked(circle, divParagraph, img);
-      activeState(active, divParagraph);
+      allStates(all, diva, divParagraph, circle);
+      activeState(active, diva, divParagraph, circle);
       clearCompleted(clear);
-      completedState(completed, divParagraph);
-      //activeState(divParagraph,active, diva);;
+      completedState(completed, diva, divParagraph, circle);
   }
+
   // Function to add all the items from localStorage to the page
     function divAbsential(){
       var storedArray = localStorage.getItem('bigBoyKey');
@@ -107,9 +106,7 @@
         diva = document.createElement('div');
         diva.className = "todoList-item";
         divParagraph = document.createElement('p');
-        diva.classList.add(
-          // 'icon', 'circle', 
-          'todoList-light');
+        diva.classList.add('todoList-light');
         divParagraph.style.cssText = "position: relative;left: 30px;"
         var img = document.createElement('img');
         img.src= "images/icon-cross.svg";
@@ -123,24 +120,20 @@
         diva.insertBefore(circle, divParagraph);
         diva.style.cssText = "position: relative;"
         divParagraph.textContent = todoItem;
-        itemsUpdate.textContent = bigBoy.length + " ";
+        const unticked = bigBoy.filter(item => item.checked != true);
+        itemsUpdate.textContent = unticked.length + " ";
         cancelButton(divParagraph, img);
         baby(divParagraph, img);
         checked(circle, divParagraph, img);
-        activeState(active, divParagraph);
+        allStates(all, diva, divParagraph, circle);
+        activeState(active, diva, divParagraph, circle);
         clearCompleted(clear);
-        //completedState(completed, divParagraph);
+        completedState(completed, diva, divParagraph, circle);
         if(bigBoy[i].checked == true){
           circle.classList.add('check');
           circle.classList.add('icon');
           divParagraph.classList.add('paragraph-text');
         }
-        completed.addEventListener('click', () => {
-           if(bigBoy[i].checked == false){
-            divParagraph.parentElement.remove();
-           } 
-        })
-
         i++;
       }
 }
@@ -167,15 +160,13 @@
     function baby(divParagraph, img) {
       img.addEventListener('click', () => {
         divParagraph.parentElement.remove();
-        console.log(divParagraph);
         var store = localStorage.getItem('bigBoyKey');
         var hello = JSON.parse(store);
-        console.log(hello);
         const results = hello.filter(item => item.value != divParagraph.textContent);
         localStorage.setItem('bigBoyKey', JSON.stringify(results));
-        console.log(JSON.parse(localStorage.getItem('bigBoyKey')));
-        if (results.length > 0){
-          itemsUpdate.textContent = results.length + " ";
+        const unticked = results.filter(item => item.checked != true);
+        if (unticked.length > 0){
+          itemsUpdate.textContent = unticked.length + " ";
         }
         else{
           itemsUpdate.textContent = "";
@@ -203,8 +194,9 @@
                 divParagraph.classList.remove('paragraph-text');
                 selectedFew[i].checked = false;
                 localStorage.setItem('bigBoyKey', JSON.stringify(selectedFew));
-                console.log(JSON.parse(localStorage.getItem('bigBoyKey')));
                 baby(divParagraph, img);
+                const unticked = selectedFew.filter(item => item.checked != true);
+                itemsUpdate.textContent = unticked.length + " "
               }
             } 
           else{
@@ -214,8 +206,8 @@
               divParagraph.classList.add('paragraph-text');
               selectedFew[i].checked = true;
               localStorage.setItem('bigBoyKey', JSON.stringify(selectedFew));
-              console.log(JSON.parse(localStorage.getItem('bigBoyKey')));
-              //completedState(completed, divParagraph,circle);
+              const unticked = selectedFew.filter(item => item.checked != true);
+              itemsUpdate.textContent = unticked.length + " ";
             }
           }
      
@@ -224,50 +216,93 @@
     }
 
     //All, Active, Completed, Clear Completed States
-    function allStates(){
+    function allStates(all, diva, divParagraph, circle){
       all.addEventListener('click', () => {
-
+        var localStorageContent = JSON.parse(localStorage.getItem('bigBoyKey'))
+        var resulting = localStorageContent.filter(content => content.checked == true);
+        var softly = localStorageContent.filter(content => content.checked == false);
+        setTimeout(setColor, 1000);
+          function setColor(){
+            all.style.cssText = "color: #3c19ff";
+          }
+          function stopSetTime() {
+            all.style.cssText = "color: black;"
+          }
+        setTimeout(stopSetTime, 5000);
+        for(i=0; i<resulting.length; i++){
+          if(resulting[i].value === divParagraph.textContent){
+            diva.style.cssText = "display: block; position: relative;";
+            divParagraph.style.cssText = "position: relative; left: 30px;";
+            circle.style.cssText = "position: absolute; cursor: pointer; overflow: hidden; border-radius: 50%; height: 21px;width: 23px; text-align: center; top: 14px; left: 10px;"
+          }
+        }
+        for(i =0; i<softly.length; i++){
+          if(softly[i].value === divParagraph.textContent){
+            diva.style.cssText = "display: block; position: relative;";
+            divParagraph.style.cssText = "position: relative; left: 30px;";
+            circle.style.cssText = "position: absolute; cursor: pointer; overflow: hidden; border-radius: 50%; height: 21px;width: 23px; text-align: center; top: 14px; left: 10px;"
+          
+        }
+      }
       })
     }
 
-    function activeState(active, divParagraph) {
+    function activeState(active, diva, divParagraph, circle){
       active.addEventListener('click', () => {
         var localStorageContent = JSON.parse(localStorage.getItem('bigBoyKey'))
         var resulting = localStorageContent.filter(content => content.checked == true);
-        console.log(resulting);
+        var softly = localStorageContent.filter(content => content.checked == false);
+        setTimeout(setColor, 1000);
+          function setColor(){
+            active.style.cssText = "color: #3c19ff";
+          }
+          function stopSetTime() {
+            active.style.cssText = "color: black;"
+          }
+        setTimeout(stopSetTime, 5000);
         for(i=0; i<resulting.length; i++){
           if(resulting[i].value === divParagraph.textContent){
-            divParagraph.parentElement.remove();
-            itemListNumber = `${localStorageContent.length}` - `${resulting.length}`;
-            itemsUpdate.textContent = itemListNumber + " ";
+            diva.style.cssText = "display: none";
           }
         }
-        // completedState(completed, divParagraph);
-        console.log(resulting);
+        for(i =0; i<softly.length; i++){
+          if(softly[i].value === divParagraph.textContent){
+            diva.style.cssText = "display: block; position: relative;";
+            divParagraph.style.cssText = "position: relative; left: 30px;";
+            circle.style.cssText = "position: absolute; cursor: pointer; overflow: hidden; border-radius: 50%; height: 21px;width: 23px; text-align: center; top: 14px; left: 10px;"
+          
+        }
+      }
       })
     }
 
-    // function completedState(completed, divParagraph){
-    //   completed.addEventListener('click', () => {
-    //     var localStorageContent = JSON.parse(localStorage.getItem('bigBoyKey'))
-    //     var result = localStorageContent.filter(content => content.checked == true);
-    //     for(i=0; i<result.length; i++){
-    //     if(result[i].checked == true){
-    //       circle.classList.add('check');
-    //       circle.classList.add('icon');
-    //       divParagraph.classList.add('paragraph-text');
-    //     }
-        
-    //     //   if(result[i].value === divParagraph.textContent){
-    //     //     divParagraph.parentElement.remove();
-    //     //     itemListNumber = `${localStorageContent.length}` - `${result.length}`;
-    //     //     itemsUpdate.textContent = itemListNumber + " ";
-    //     //   }
-    //     }
-    //     // activeState(active, divParagraph);
-    //     console.log(result); 
-    //   })
-    // }
+    function completedState(completed, diva, divParagraph, circle){
+      completed.addEventListener('click', () => {
+        var localStorageContent = JSON.parse(localStorage.getItem('bigBoyKey'))
+        var result = localStorageContent.filter(content => content.checked == false);
+        var completedItems = localStorageContent.filter(content => content.checked == true);
+        setTimeout(setColor, 1000);
+          function setColor(){
+            completed.style.cssText = "color: #3c19ff";
+          }
+          function stopSetTime() {
+            completed.style.cssText = "color: black;"
+          }
+        setTimeout(stopSetTime, 5000);
+        for(i=0; i<result.length; i++){
+          if(result[i].value === divParagraph.textContent){
+            diva.style.cssText = "display: none;"
+          }
+        }
+        for(i=0; i<completedItems.length; i++){
+          if(completedItems[i].value === divParagraph.textContent){
+            diva.style.cssText = "display: block; position: relative;";
+            divParagraph.style.cssText = "position: relative;left: 30px;";
+            circle.style.cssText = "position: absolute; cursor: pointer; overflow: hidden; border-radius: 50%; height: 21px;width: 23px; text-align: center; top: 14px; left: 10px;"
+          }
+        }
+      })
+    }
 
     
     function clearCompleted(clear) {
