@@ -50,7 +50,7 @@
         var text3 = text1.concat(text2);
         const obj = {
           "value": text3,
-          "checked": "false",
+          "checked": false,
         }
         bigBoy.push(obj);
         localStorage.setItem("bigBoyKey", JSON.stringify(bigBoy));
@@ -91,8 +91,8 @@
       baby(divParagraph, img);
       checked(circle, divParagraph, img);
       activeState(active, divParagraph);
+      clearCompleted(clear);
       completedState(completed, divParagraph);
-      clearCompleted(divParagraph, clear);
       //activeState(divParagraph,active, diva);;
   }
   // Function to add all the items from localStorage to the page
@@ -128,14 +128,19 @@
         baby(divParagraph, img);
         checked(circle, divParagraph, img);
         activeState(active, divParagraph);
-        completedState(completed, divParagraph);
-        clearCompleted(divParagraph, clear)
-        if(completedState(completed, divParagraph)){
-          return; 
-        }else{
-          bigBoy[i].checked = "false";
+        clearCompleted(clear);
+        //completedState(completed, divParagraph);
+        if(bigBoy[i].checked == true){
+          circle.classList.add('check');
+          circle.classList.add('icon');
+          divParagraph.classList.add('paragraph-text');
         }
-        //activeState(divParagraph,active, diva);
+        completed.addEventListener('click', () => {
+           if(bigBoy[i].checked == false){
+            divParagraph.parentElement.remove();
+           } 
+        })
+
         i++;
       }
 }
@@ -180,7 +185,7 @@
     }
 
     for(i=0; i<JSON.parse(localStorage.getItem('bigBoyKey')); i++){
-      if(JSON.parse(localStorage.getItem('bigBoyKey'))[i].checked == "true"){
+      if(JSON.parse(localStorage.getItem('bigBoyKey'))[i].checked == true){
         checked(circle, divParagraph, img);
       }
     }
@@ -188,15 +193,15 @@
     // Code for checking/ticking a todo list item and the ensuing changes
     function checked(circle, divParagraph, img) {
       circle.addEventListener('click', () => {
-        circle.classList.toggle('check');
-        circle.classList.toggle('icon');
-        divParagraph.classList.toggle('paragraph-text'); 
-        
         var selectedFew = JSON.parse(localStorage.getItem('bigBoyKey'));
+        
         for (let i=0; i <selectedFew.length; i++){
           if(circle.classList.contains('check')){
               if(divParagraph.textContent === selectedFew[i].value){
-                selectedFew[i].checked = "true";
+                circle.classList.remove('check');
+                circle.classList.remove('icon');
+                divParagraph.classList.remove('paragraph-text');
+                selectedFew[i].checked = false;
                 localStorage.setItem('bigBoyKey', JSON.stringify(selectedFew));
                 console.log(JSON.parse(localStorage.getItem('bigBoyKey')));
                 baby(divParagraph, img);
@@ -204,9 +209,13 @@
             } 
           else{
             if(divParagraph.textContent === selectedFew[i].value){
-              selectedFew[i].checked = "false";
-            localStorage.setItem('bigBoyKey', JSON.stringify(selectedFew));
-            console.log(JSON.parse(localStorage.getItem('bigBoyKey')));
+              circle.classList.add('check');
+              circle.classList.add('icon');
+              divParagraph.classList.add('paragraph-text');
+              selectedFew[i].checked = true;
+              localStorage.setItem('bigBoyKey', JSON.stringify(selectedFew));
+              console.log(JSON.parse(localStorage.getItem('bigBoyKey')));
+              //completedState(completed, divParagraph,circle);
             }
           }
      
@@ -215,12 +224,17 @@
     }
 
     //All, Active, Completed, Clear Completed States
-    
+    function allStates(){
+      all.addEventListener('click', () => {
 
-   function activeState(active, divParagraph) {
+      })
+    }
+
+    function activeState(active, divParagraph) {
       active.addEventListener('click', () => {
         var localStorageContent = JSON.parse(localStorage.getItem('bigBoyKey'))
-        var resulting = localStorageContent.filter(content => content.checked === "true");
+        var resulting = localStorageContent.filter(content => content.checked == true);
+        console.log(resulting);
         for(i=0; i<resulting.length; i++){
           if(resulting[i].value === divParagraph.textContent){
             divParagraph.parentElement.remove();
@@ -228,41 +242,39 @@
             itemsUpdate.textContent = itemListNumber + " ";
           }
         }
-        completedState(completed, divParagraph);
+        // completedState(completed, divParagraph);
         console.log(resulting);
       })
     }
 
-    function completedState(completed, divParagraph){
-      completed.addEventListener('click', () => {
-        var localStorageContent = JSON.parse(localStorage.getItem('bigBoyKey'))
-        var result = localStorageContent.filter(content => content.checked !== "false");
-        for(i=0; i<result.length; i++){
-          if(result[i].value === divParagraph.textContent){
-            divParagraph.parentElement.remove();
-            itemListNumber = `${localStorageContent.length}` - `${result.length}`;
-            itemsUpdate.textContent = itemListNumber + " ";
-          }
-        }
-        activeState(active, divParagraph);
-        console.log(result); 
-      })
-    }
+    // function completedState(completed, divParagraph){
+    //   completed.addEventListener('click', () => {
+    //     var localStorageContent = JSON.parse(localStorage.getItem('bigBoyKey'))
+    //     var result = localStorageContent.filter(content => content.checked == true);
+    //     for(i=0; i<result.length; i++){
+    //     if(result[i].checked == true){
+    //       circle.classList.add('check');
+    //       circle.classList.add('icon');
+    //       divParagraph.classList.add('paragraph-text');
+    //     }
+        
+    //     //   if(result[i].value === divParagraph.textContent){
+    //     //     divParagraph.parentElement.remove();
+    //     //     itemListNumber = `${localStorageContent.length}` - `${result.length}`;
+    //     //     itemsUpdate.textContent = itemListNumber + " ";
+    //     //   }
+    //     }
+    //     // activeState(active, divParagraph);
+    //     console.log(result); 
+    //   })
+    // }
 
     
-    function clearCompleted(divParagraph, clear) {
+    function clearCompleted(clear) {
       clear.addEventListener('click', () => {
         var arrayToClear = JSON.parse(localStorage.getItem('bigBoyKey'));
-        for (i=0; i< arrayToClear.length; i++){
-          if(arrayToClear[i].value === divParagraph.textContent && arrayToClear[i].checked === "true"){
-            divParagraph.parentElement.remove();
-          }
-        }
-        var activeArray = arrayToClear.filter(item => item.checked === "false");
-        localStorage.setItem('bigBoyKey', JSON.stringify(activeArray));
-      })
-    }
-    
-    // function setActiveArray(activeArray){
-      
-    // }
+        var activeArray = arrayToClear.filter(item => item.checked == false);
+        localStorage.setItem('bigBoyKey', JSON.stringify(activeArray)); 
+        location.reload();
+      });
+      }
