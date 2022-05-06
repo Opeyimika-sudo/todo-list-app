@@ -1,5 +1,5 @@
   // Declaration of the variables from the HTML page
-  var container = document.querySelector('div');
+  var container = document.querySelector('.container');
   var moonIcon = document.getElementById('moon-icon');
   var sunIcon = document.getElementById('sun-icon');
   var body = document.querySelector('body'); 
@@ -14,28 +14,27 @@
   var active = document.getElementById('active');
   var completed = document.getElementById('completed');
   var clear = document.getElementById('clear');
-  moonIcon.addEventListener('click', darkMode);
-  sunIcon.addEventListener('click', lightMode);
 
-   // Function to turn the page to Dark Mode from Light Mode
-  function darkMode() {
-    moonIcon.style.cssText = "display: none;"
-    sunIcon.style.cssText = "display: inline;"
-    body.style.cssText = "background-color: black; color: white;"
-    formInput.style.cssText = "background-color: hsl(234,23%,19%); border: 1px solid hsl(234,23%,19%); color: white;"
-    main.style.cssText = "background-color: hsl(234,23%,19%);border: 1px solid hsl(234,23%,19%);color: white;"
-    container.classList.replace('container-mobile-light', 'container-mobile-dark');
-  }
+    // addEventListener to icons
+  moonIcon.addEventListener('click', () => {
+        moonIcon.style.cssText = "display: none;"
+        sunIcon.style.cssText = "display: inline;"
+        body.style.cssText = "background-color: black; color: white;"
+        formInput.style.cssText = "background-color: hsl(234,23%,19%); border: 1px solid hsl(234,23%,19%); color: white;"
+        main.style.cssText = "background-color: hsl(234,23%,19%);border: 1px solid hsl(234,23%,19%);color: white;"
+        container.classList.replace('container-mobile-light', 'container-mobile-dark');
+  });
+  
+  sunIcon.addEventListener('click', () => {
+      moonIcon.style.cssText = "display: inline;"
+      sunIcon.style.cssText = "display: none;"
+      body.style.cssText = "background-color: white; color: black;"
+      main.style.cssText = "background-color: var(--secondaryColor); color: black; border: 1px solid var(--secondaryColor);";
+      formInput.style.cssText = "background-color: var(--secondaryColor); border: 1px solid var(--secondaryColor);"
+      container.classList.replace('container-mobile-dark', 'container-mobile-light');
+  })
 
-  // Function to turn the page to Light Mode from Dark Mode
-  function lightMode() {
-    moonIcon.style.cssText = "display: inline;"
-    sunIcon.style.cssText = "display: none;"
-    body.style.cssText = "background-color: white; color: black;"
-    main.style.cssText = "background-color: var(--secondaryColor); color: black; border: 1px solid var(--secondaryColor);";
-    formInput.style.cssText = "background-color: var(--secondaryColor); border: 1px solid var(--secondaryColor);"
-    container.classList.replace('container-mobile-dark', 'container-mobile-light');
-  }
+
     var bigBoy = new Array();
     let text;
     var todoItem;

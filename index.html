@@ -48,3 +48,44 @@
 <script src="main.js"></script>
 </body>
 </html>
+
+<!-- 
+Want to see what the code looks like in my head
+function changeBG(x, moonIcon){
+  if(moonIcon.style.display == "inline"){
+    if(x.matches){
+    container.style.cssText = "background-image: url(images/bg-desktop-light.jpg)";
+  } else{
+    container.style.cssText = "background-image: url(images/bg-mobile-light.jpg)";
+  }
+}
+  else if(moonIcon.style.display == "none"){
+    if(x.matches){
+    container.style.cssText = "background-image: url(images/bg-desktop-dark.jpg)";
+  } else{
+    container.style.cssText = "background-image: url(images/bg-mobile-dark.jpg)";
+  }
+  }
+}
+
+var x = window.matchMedia("(min-width: 600px)");
+changeBG(x);
+x.addEventListener(changeBG);
+ -->
+ <!-- addEventListener to icons;
+moonIcon.addEventListener('click', () => {
+      moonIcon.style.cssText = "display: none;"
+      sunIcon.style.cssText = "display: inline;"
+      body.style.cssText = "background-color: black; color: white;"
+      formInput.style.cssText = "background-color: hsl(234,23%,19%); border: 1px solid hsl(234,23%,19%); color: white;"
+      main.style.cssText = "background-color: hsl(234,23%,19%);border: 1px solid hsl(234,23%,19%);color: white;"
+});
+
+sunIcon.addEventListener('click', () => {
+    moonIcon.style.cssText = "display: inline;"
+    sunIcon.style.cssText = "display: none;"
+    body.style.cssText = "background-color: white; color: black;"
+    main.style.cssText = "background-color: var(--secondaryColor); color: black; border: 1px solid var(--secondaryColor);";
+    formInput.style.cssText = "background-color: var(--secondaryColor); border: 1px solid var(--secondaryColor);"
+})
+-->
